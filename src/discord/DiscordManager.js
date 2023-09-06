@@ -15,13 +15,12 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-client.on('messageCreate', async (message) => {
+const discordManager = new DiscordManager(app, client);
   if (message.content === '!ping') {
     const randomResponse = pingResponses[Math.floor(Math.random() * pingResponses.length)];
     
     message.reply(randomResponse);
-  }
-});
+  };
 class DiscordManager extends CommunicationBridge {
   constructor(app) {
     super()
