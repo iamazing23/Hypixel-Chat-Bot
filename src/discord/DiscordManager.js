@@ -35,7 +35,13 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 
-client.login(discordBotToken);
+client.login(discordBotToken)
+  .then(() => {
+    console.log('Bot logged in successfully.');
+  })
+  .catch(error => {
+    console.error('Error logging in:', error);
+  });
 
 class DiscordManager extends CommunicationBridge {
   constructor(app) {
