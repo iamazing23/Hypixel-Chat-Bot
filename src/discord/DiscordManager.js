@@ -21,11 +21,12 @@ const discordManager = new DiscordManager(app, client);
     
     message.reply(randomResponse);
   };
-class DiscordManager extends CommunicationBridge {
-  constructor(app) {
-    super()
-
-    this.app = app
+  class DiscordManager extends CommunicationBridge {
+    constructor(app, client) {
+      super();
+  
+      this.app = app;
+      this.client = client;
 
     this.stateHandler = new StateHandler(this)
     this.messageHandler = new MessageHandler(this, new CommandHandler(this))
