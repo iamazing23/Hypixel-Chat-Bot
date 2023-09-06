@@ -3,30 +3,45 @@ const StateHandler = require('./handlers/StateHandler')
 const MessageHandler = require('./handlers/MessageHandler')
 const CommandHandler = require('./CommandHandler')
 const Discord = require('discord.js-light')
-
-const pingResponses = [
-  'Pong!',
-  'Ping-pong!',
-  'Pong, right back at you!',
-  'Ping! Did I win?',
-];
+const { Client, Intents, MessageActionRow, MessageButton } = require('discord.js-light');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const fs = require('fs');
+const configFile = fs.readFileSync('config.json', 'utf8');
+const config = JSON.parse(configFile);
+const discordBotToken = config.discord.token;
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-const discordManager = new DiscordManager(app, client);
+client.on('messageCreate', async (message) => {
   if (message.content === '!ping') {
-    const randomResponse = pingResponses[Math.floor(Math.random() * pingResponses.length)];
-    
-    message.reply(randomResponse);
-  };
-  class DiscordManager extends CommunicationBridge {
-    constructor(app, client) {
-      super();
-  
-      this.app = app;
-      this.client = client;
+    message.reply('Pong!');
+  }
+});
+
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === 'react') {
+    try {
+      const message = await interaction.reply({ content: 'You can react with Unicode emojis!', fetchReply: true });
+      await message.react('😄');
+    } catch (error) {
+      console.error('Error handling react command:', error);
+    }
+  }
+});
+
+client.login(discordBotToken);
+
+class DiscordManager extends CommunicationBridge {
+  constructor(app) {
+    super()
+
+    this.app = app
 
     this.stateHandler = new StateHandler(this)
     this.messageHandler = new MessageHandler(this, new CommandHandler(this))
