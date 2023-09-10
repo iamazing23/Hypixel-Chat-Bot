@@ -10,7 +10,7 @@ class Yedel extends MinecraftCommand {
   }
 
   onCommand(username, message) {
-    this.send(`/gc Sucks`)
+    this.send(`/w ${username} Sucks`)
   }
 }
 
