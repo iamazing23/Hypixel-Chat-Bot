@@ -1,4 +1,7 @@
 const fs = require('fs')
+const Configuration = require('./Configuration');
+
+const config = new Configuration();
 
 class Configuration {
   properties = {
