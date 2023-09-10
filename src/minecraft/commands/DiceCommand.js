@@ -10,8 +10,12 @@ class DiceRollCommand extends MinecraftCommand {
   }
 
   onCommand(username) {
-    const diceRoll = 1 + Math.floor(Math.random() * 6);
-    this.minecraft.chat(`/gc ${username} rolled a ${diceRoll}.`);
+    if (this.minecraft && this.minecraft.chat) {
+      const diceRoll = 1 + Math.floor(Math.random() * 6);
+      this.minecraft.chat(`/gc ${username} rolled a ${diceRoll}.`);
+    } else {
+      console.error('Minecraft bot is not correctly initialized or lacks the chat function.');
+    }
   }
 }
 
