@@ -1,22 +1,17 @@
-const MinecraftCommand = require('../../contracts/MinecraftCommand');
+const MinecraftCommand = require('../../contracts/MinecraftCommand')
 
-class DiceRollCommand extends MinecraftCommand {
+class GuildLobbyCommand extends MinecraftCommand {
   constructor(minecraft) {
-    super(minecraft);
+    super(minecraft)
 
-    this.name = 'dice';
-    this.aliases = ['diceroll'];
-    this.description = 'Rolls a dice';
+    this.name = 'guildlobby'
+    this.aliases = ['globby']
+    this.description = "Whispers user's username to a guild lobby account"
   }
 
-  onCommand(username) {
-    if (this.minecraft && this.minecraft.chat) {
-      const diceRoll = 1 + Math.floor(Math.random() * 6);
-      this.minecraft.chat(`/gc ${username} rolled a ${diceRoll}.`);
-    } else {
-      console.error('Minecraft bot is not correctly initialized or lacks the chat function.');
-    }
+  onCommand(username, message) {
+    this.send(`/w ${this.minecraft.app.config.minecraft.lobbyHolder} ?tw ${username}`)
   }
 }
 
-module.exports = DiceRollCommand;
+module.exports = GuildLobbyCommand
