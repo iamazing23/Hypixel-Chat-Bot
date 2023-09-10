@@ -45,7 +45,7 @@ class HelpCommand extends DiscordCommand {
         ],
         color: message.guild.me.displayHexColor,
         footer: {
-          text: 'DM iamazing2 for help'
+          text: 'Made by JackTheGuy#0001'
         },
         timestamp: new Date()
       }
