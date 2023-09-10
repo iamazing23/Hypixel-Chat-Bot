@@ -8,13 +8,13 @@ class yedel extends MinecraftCommand {
     this.aliases = [];
     this.description = 'very cool command';
     this.responses = [
-      'PRAY TO RNGESUS!!!! Yedel has surpassed the power of god and is now better than {username}.',
-      'ULTRA RARE!!! Yedel has the power of god.',
-      'ULTRA RARE!!! Yedel has the power of god.',
-      'ULTRA RARE!!! Yedel has the power of god.',
-      'ULTRA RARE!!! Yedel has the power of god.',
-      'ULTRA RARE!!! Yedel has the power of god.',
-      'ULTRA RARE!!! Yedel has the power of god.',
+      'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
+      'ULTRA RARE!!! {username} owes yedel 1 coin',
       'Rare! Yedel said {username} sucks',
       'Rare! Yedel said {username} sucks',
       'Rare! Yedel said {username} sucks',
