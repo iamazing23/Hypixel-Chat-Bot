@@ -1,10 +1,10 @@
 const MinecraftCommand = require('../../contracts/MinecraftCommand')
 
-class Yedel extends MinecraftCommand {
+class yedel extends MinecraftCommand {
   constructor(minecraft) {
     super(minecraft)
 
-    this.name = 'Yedel'
+    this.name = 'yedel'
     this.aliases = []
     this.description = 'very cool command'
   }
@@ -14,4 +14,4 @@ class Yedel extends MinecraftCommand {
   }
 }
 
-module.exports = Yedel
+module.exports = yedel
