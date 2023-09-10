@@ -1,19 +1,18 @@
-const MinecraftCommand = require('../../contracts/MinecraftCommand')
+const MinecraftCommand = require('../../contracts/MinecraftCommand');
 
 class DiceRollCommand extends MinecraftCommand {
   constructor(minecraft) {
-    super(minecraft)
+    super(minecraft);
 
-    this.name = 'dice'
-    this.aliases = ['diceroll']
-    this.description = 'Rolls a dice'
+    this.name = 'dice';
+    this.aliases = ['diceroll'];
+    this.description = 'Rolls a dice';
   }
 
-  onCommand(message) {
+  onCommand(username) {
     const diceRoll = 1 + Math.floor(Math.random() * 6);
-    const playerName = message.author.username;
-    message.reply(`/gc ${playerName} rolled a ${diceRoll}.`);
+    this.minecraft.chat(`/gc ${username} rolled a ${diceRoll}.`);
   }
 }
 
-module.exports = DiceRollCommand
+module.exports = DiceRollCommand;
