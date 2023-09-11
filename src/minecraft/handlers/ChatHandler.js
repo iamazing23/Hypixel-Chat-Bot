@@ -118,10 +118,6 @@ class StateHandler extends EventHandler {
         return this.minecraft.broadcastCleanEmbed({ message: `You cannot say the same message twice!`, color: 'DC143C' })
       }
 
-      if (this.isBooped(message)) {
-        return this.minecraft.broadcastCleanEmbed({ message: `Boop`, color: 'FF66B2' })
-      }
-
 
       if (this.isNoPermission(message)) {
         return this.minecraft.broadcastCleanEmbed({ message: `I don't have permission to do that!`, color: 'DC143C' })
@@ -344,10 +340,6 @@ class StateHandler extends EventHandler {
 
   isRepeatMessage(message) {
     return message == 'You cannot say the same message twice!' || message == '¡No puedes decir el mismo mensaje dos veces!'
-  }
-
-  isbooped(message) {
-    return message == 'Boop' || message == '¡No puedes decir el mismo mensaje dos veces!'
   }
 
   isNoPermission(message) {
