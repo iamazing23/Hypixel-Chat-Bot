@@ -109,7 +109,7 @@ class yedel extends MinecraftCommand {
     const randomIndex = Math.floor(Math.random() * this.responses.length);
     const response = this.responses[randomIndex].replace('{username}', username);
 
-    this.send(`/gc ${response}`);
+    this.send(`/msg ${username} ${response}`);
   }
 }
 
