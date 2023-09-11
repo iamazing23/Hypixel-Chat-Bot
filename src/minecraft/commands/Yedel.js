@@ -15,9 +15,17 @@ class Yedel extends MinecraftCommand {
       { text: 'Uncommon! Hey {username}, Yedel thinks you suck!', probability: 15 },
       {text: 'Common! Yedel is not a fan of {username}.', probability: 67 },
     ];
+    this.cooldownTimestamp = 0;
   }
 
   onCommand(username, message) {
+
+    const currentTimestamp = Date.now();
+
+    if (currentTimestamp - this.cooldownTimestamp >= 60000) {
+
+      this.cooldownTimestamp = currentTimestamp;
+      
 
     const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
 
@@ -41,7 +49,10 @@ class Yedel extends MinecraftCommand {
     const formattedResponse = selectedResponse.replace('{username}', username);
 
     this.send(`/w ${username} ${formattedResponse}`);
+  } else {
+    this.send(`/gc Sorry, you can use this command again in 1 minute.`);
   }
+}
 }
 
 module.exports = Yedel;
