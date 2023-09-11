@@ -10,7 +10,7 @@ class GuildLobbyCommand extends MinecraftCommand {
   }
 
   onCommand(username, message) {
-    this.send(`/w ${this.minecraft.app.config.minecraft.lobbyHolder} ?tw ${username}`)
+    this.send(`/w hey ${username}, There was a error with this command please try again later!`)
   }
 }
 

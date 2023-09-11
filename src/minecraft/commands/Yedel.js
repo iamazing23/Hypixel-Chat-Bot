@@ -1,6 +1,6 @@
 const MinecraftCommand = require('../../contracts/MinecraftCommand');
 
-class yedel extends MinecraftCommand {
+class Yedel extends MinecraftCommand {
   constructor(minecraft) {
     super(minecraft);
 
@@ -8,109 +8,37 @@ class yedel extends MinecraftCommand {
     this.aliases = [];
     this.description = 'very cool command';
     this.responses = [
-      'SUPER ULTRA RARE RARE RARE!!!!!! YEDEL SAYS UR USING HACKS {username}',
-      'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!!!!',
-      'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'ULTRA RARE!!! {username} owes yedel 1 coin!!!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Rare! Yedel said {username} sucks!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Uncommon! Hey {username}, Yedel thinks you suck!',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
-      'Common! Yedel is not a fan of {username}.',
+      { text: 'SUPER ULTRA RARE RARE RARE!!!!!! YEDEL SAYS UR USING HACKS!!', probability: 1 },
+      { text: 'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!!!!', probability: 4 },
+      { text: 'ULTRA RARE!!! {username} owes yedel 1 coin!!!', probability: 5 },
+      { text: 'Rare! Yedel said {username} sucks!', probability: 10 },
+      { text: 'Uncommon! Hey {username}, Yedel thinks you suck!', probability: 15 },
+      {text: 'Common! Yedel is not a fan of {username}.', probability: 65 },
     ];
   }
 
   onCommand(username, message) {
-    // Randomly select a response from the list
-    const randomIndex = Math.floor(Math.random() * this.responses.length);
-    const response = this.responses[randomIndex].replace('{username}', username);
+    //yedel why are u here????
+    const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
 
-    this.send(`/msg ${username} ${response}`);
+    const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
+
+    let selectedResponse;
+    let cumulativeProbability = 0;
+
+    for (const response of this.responses) {
+      cumulativeProbability += response.probability;
+
+      if (randomNumber <= cumulativeProbability) {
+        selectedResponse = response.text;
+        break;
+      }
+    }
+
+    const formattedResponse = selectedResponse.replace('{username}', username);
+
+    this.send(`/gc ${username} ${formattedResponse}`);
   }
 }
 
-module.exports = yedel;
+module.exports = Yedel;
