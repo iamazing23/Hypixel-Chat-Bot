@@ -118,7 +118,6 @@ class StateHandler extends EventHandler {
         return this.minecraft.broadcastCleanEmbed({ message: `You cannot say the same message twice!`, color: 'DC143C' })
       }
 
-
       if (this.isNoPermission(message)) {
         return this.minecraft.broadcastCleanEmbed({ message: `I don't have permission to do that!`, color: 'DC143C' })
       }
