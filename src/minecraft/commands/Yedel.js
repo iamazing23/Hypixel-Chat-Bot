@@ -57,7 +57,16 @@ class Yedel extends MinecraftCommand {
       this.send(`/w ${username} ${formattedResponse}`);
     } else {
 
-      this.send(`/w ${username} Sorry, you can use this command again in 1 minute.`);
+      const extraNumbersCooldown = [];
+      for (let i = 0; i < 5; i++) {
+        extraNumbersCooldown.push(Math.floor(Math.random() * 100)); 
+      }
+
+
+      const extraNumbersCooldownString = extraNumbersCooldown.join(', ');
+
+
+      this.send(`/w ${username} Sorry, you can use this command again in 1 minute. [${extraNumbersCooldownString}]`);
     }
   }
 }
