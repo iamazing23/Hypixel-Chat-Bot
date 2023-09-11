@@ -18,38 +18,29 @@ class Yedel extends MinecraftCommand {
   }
 
   onCommand(username, message) {
-    let formattedResponse;
+
+    const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
 
 
-    if (message === 'You cannot say the same message twice!') {
-
-      formattedResponse = `/w ${username} ${message}`;
-    } else {
-
-      const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
+    const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
 
 
-      const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
+    let selectedResponse;
+    let cumulativeProbability = 0;
 
+    for (const response of this.responses) {
+      cumulativeProbability += response.probability;
 
-      let selectedResponse;
-      let cumulativeProbability = 0;
-
-      for (const response of this.responses) {
-        cumulativeProbability += response.probability;
-
-        if (randomNumber <= cumulativeProbability) {
-          selectedResponse = response.text;
-          break;
-        }
+      if (randomNumber <= cumulativeProbability) {
+        selectedResponse = response.text;
+        break;
       }
-
-
-      formattedResponse = `/w ${selectedResponse.replace('{username}', username)}`;
     }
 
+ 
+    const formattedResponse = selectedResponse.replace('{username}', username);
 
-    this.send(formattedResponse);
+    this.send(`/w ${username} ${formattedResponse}`);
   }
 }
 
