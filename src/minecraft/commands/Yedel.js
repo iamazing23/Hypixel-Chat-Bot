@@ -23,7 +23,7 @@ class Yedel extends MinecraftCommand {
 
     if (message === 'You cannot say the same message twice!') {
 
-      formattedResponse = `/gc ${message}`;
+      formattedResponse = `/w ${message}`;
     } else {
 
       const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
@@ -45,7 +45,7 @@ class Yedel extends MinecraftCommand {
       }
 
 
-      formattedResponse = `/gc ${selectedResponse.replace('{username}', username)}`;
+      formattedResponse = `/w ${selectedResponse.replace('{username}', username)}`;
     }
 
 
