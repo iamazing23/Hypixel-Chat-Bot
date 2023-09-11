@@ -9,11 +9,11 @@ class Yedel extends MinecraftCommand {
     this.description = 'very cool command';
     this.responses = [
       { text: 'SUPER ULTRA RARE RARE RARE!!!!!! YEDEL SAYS UR USING HACKS!!', probability: 1 },
-      { text: 'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!!!!', probability: 4 },
+      { text: 'PRAY TO RNGESUS!!!! Yedel said {username} has to pay him 100 coins now haha!!!!', probability: 2 },
       { text: 'ULTRA RARE!!! {username} owes yedel 1 coin!!!', probability: 5 },
       { text: 'Rare! Yedel said {username} sucks!', probability: 10 },
       { text: 'Uncommon! Hey {username}, Yedel thinks you suck!', probability: 15 },
-      {text: 'Common! Yedel is not a fan of {username}.', probability: 65 },
+      {text: 'Common! Yedel is not a fan of {username}.', probability: 67 },
     ];
   }
 
@@ -34,8 +34,6 @@ class Yedel extends MinecraftCommand {
         break;
       }
     }
-
-    const formattedResponse = selectedResponse.replace('{username}', username);
 
     this.send(`/gc ${username} ${formattedResponse}`);
   }
