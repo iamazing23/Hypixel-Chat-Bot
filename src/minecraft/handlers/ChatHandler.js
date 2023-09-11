@@ -35,15 +35,6 @@ class StateHandler extends EventHandler {
           color: '47F049'
         })
       }
-      if (this.isDirectMessage(message)) {
-        const match = message.match(/From \[([^\]]+)\] ([^:]+): (.+)/);
-        if (match) {
-          const senderRank = match[1];
-          const senderName = match[2];
-          const messageContent = match[3];
-          this.minecraft.sendDirectMessage(senderName, `You sent me this: "${messageContent}"`);
-        }
-      }
 
       if (this.isLoginMessage(message)) {
         let user = message.split(" ")[2]
