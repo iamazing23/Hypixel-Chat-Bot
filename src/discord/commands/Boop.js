@@ -1,25 +1,13 @@
-const Discord = require('discord.js');
-const { Command } = require('discord.js-commando');
+const DiscordCommand = require('../../contracts/DiscordCommand')
 
-class BoopCommand extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'boop',
-      aliases: ['b'],
-      description: 'Boop a user by mentioning them.',
-      args: [
-        {
-          key: 'user',
-          prompt: 'Which user would you like to boop?',
-          type: 'user',
-        },
-      ],
-    });
-  }
+class HelpCommand extends DiscordCommand {
+  constructor(discord) {
+    super(discord)
 
-  run(message, { user }) {
-    message.channel.send(`Boop! ${user}`);
+    this.name = 'boop'
+    this.aliases = ['b', 'boop']
+    this.description = 'tries to /boop the player'
   }
 }
 
-module.exports = BoopCommand;
+module.exports = Boop
