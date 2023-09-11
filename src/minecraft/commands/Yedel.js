@@ -17,21 +17,27 @@ class Yedel extends MinecraftCommand {
     ];
   }
 
+  selectRandomResponse() {
+    const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
+    const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
+    let selectedResponse;
+    let cumulativeProbability = 0;
+
+    for (const response of this.responses) {
+      cumulativeProbability += response.probability;
+
+      if (randomNumber <= cumulativeProbability) {
+        selectedResponse = response.text;
+        break;
+      }
+    }
+
+    return selectedResponse;
+  }
+
   onCommand(username, message) {
     try {
-      const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
-      const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
-      let selectedResponse;
-      let cumulativeProbability = 0;
-
-      for (const response of this.responses) {
-        cumulativeProbability += response.probability;
-
-        if (randomNumber <= cumulativeProbability) {
-          selectedResponse = response.text;
-          break;
-        }
-      }
+      const selectedResponse = this.selectRandomResponse();
 
       const extraNumbers = [];
       for (let i = 0; i < 5; i++) {
@@ -43,9 +49,8 @@ class Yedel extends MinecraftCommand {
 
       this.send(`/w ${username} ${formattedResponse}`);
     } catch (error) {
-
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
-      console.error('Error:', error); 
+      console.error('Error:', error);
     }
   }
 }
