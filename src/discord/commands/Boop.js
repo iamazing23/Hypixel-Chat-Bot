@@ -13,9 +13,13 @@ class BoopCommand extends DiscordCommand {
     let args = this.getArgs(message)
     let user = args.shift()
     let reason = args.join(' ')
-
-    this.sendMinecraftMessage(`/w ${user ? user : ''} Boop!`)
+    let username = message.author.username;
+    if (user) {
+        this.sendMinecraftMessage(`/w ${user} You got Booped by ${username}!`);
+      } else {
+        this.sendMinecraftMessage(`/w iamazing2 Bot errored`);
+      }
+    }
   }
-}
-
-module.exports = BoopCommand
+  
+  module.exports = BoopCommand;
