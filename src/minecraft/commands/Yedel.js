@@ -15,11 +15,12 @@ class Yedel extends MinecraftCommand {
       { text: 'Uncommon! Hey {username}, Yedel thinks you suck!', probability: 15 },
       {text: 'Common! Yedel is not a fan of {username}.', probability: 67 },
     ];
-    this.errorResponse = "You cannot say the same message twice!";
   }
 
   onCommand(username, message) {
-    //yedel why are u here????
+    if (message === 'You cannot say the same message twice!') {
+      this.send(`/gc ${message}`);
+    } else {
     const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
 
     const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
@@ -38,6 +39,7 @@ class Yedel extends MinecraftCommand {
 
     this.send(`/gc ${username} ${formattedResponse}`);
   }
+}
 }
 
 module.exports = Yedel;
