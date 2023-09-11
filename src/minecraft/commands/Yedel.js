@@ -47,7 +47,7 @@ class Yedel extends MinecraftCommand {
       const extraNumbersString = extraNumbers.join(', ');
       const formattedResponse = selectedResponse.replace('{username}', username) + ` [${extraNumbersString}]`;
 
-      this.send(`/w ${username} this command is currently disabled sorry!`);
+      this.send(`/w ${username} ${formattedResponse}`);
     } catch (error) {
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
       console.error('Error:', error);
