@@ -26,13 +26,26 @@ class Yedel extends MinecraftCommand {
       formattedResponse = `/gc ${message}`;
     } else {
 
-      const randomNumber = Math.floor(Math.random() * 100) + 1;
+      const totalProbability = this.responses.reduce((sum, response) => sum + response.probability, 0);
 
 
-      const responseIndex = randomNumber % this.responses.length;
-      const response = this.responses[responseIndex].replace('{username}', username);
+      const randomNumber = Math.floor(Math.random() * totalProbability) + 1;
 
-      formattedResponse = `/gc ${response}`;
+
+      let selectedResponse;
+      let cumulativeProbability = 0;
+
+      for (const response of this.responses) {
+        cumulativeProbability += response.probability;
+
+        if (randomNumber <= cumulativeProbability) {
+          selectedResponse = response.text;
+          break;
+        }
+      }
+
+
+      formattedResponse = `/gc ${selectedResponse.replace('{username}', username)}`;
     }
 
 
