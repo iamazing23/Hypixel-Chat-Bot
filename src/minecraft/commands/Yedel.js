@@ -38,29 +38,24 @@ class Yedel extends MinecraftCommand {
   onCommand(username, message) {
     try {
 
-      if (message.startsWith('!yedel')) {
-        const match = message.match(/From (\w+) (\w+): !yedel/);
-        if (match) {
-          const rank = match[1];
-          const username = match[2];
-          const selectedResponse = this.selectRandomResponse();
-          const extraNumbers = [];
-          for (let i = 0; i < 5; i++) {
-            extraNumbers.push(Math.floor(Math.random() * 100));
-          }
-          const extraNumbersString = extraNumbers.join(', ');
-          const formattedResponse = selectedResponse
-            .replace('{rank}', rank)
-            .replace('{username}', username) + ` [${extraNumbersString}]`;
+      const ranks = ["[VIP]", "[VIP+]", "[MVP]", "[MVP+]", "[MVP++]"];
+      
 
-          this.send(`/w ${username} ${formattedResponse}`);
-        }
+      const randomRank = ranks[Math.floor(Math.random() * ranks.length)];
+  
+      const extraNumbers = [];
+      for (let i = 0; i < 5; i++) {
+        extraNumbers.push(Math.floor(Math.random() * 100));
       }
+  
+      const extraNumbersString = extraNumbers.join(', ');
+      const formattedResponse = `From ${randomRank} ${username}: !yedel` + ` [${extraNumbersString}]`;
+  
+      this.send(`/w ${username} ${formattedResponse}`);
     } catch (error) {
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
       console.error('Error:', error);
     }
   }
 }
-
 module.exports = Yedel;
