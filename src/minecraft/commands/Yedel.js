@@ -37,20 +37,16 @@ class Yedel extends MinecraftCommand {
 
   onCommand(username, message) {
     try {
+      const selectedResponse = this.selectRandomResponse();
 
-      const ranks = ["[VIP]", "[VIP+]", "[MVP]", "[MVP+]", "[MVP++]"];
-      
-
-      const randomRank = ranks[Math.floor(Math.random() * ranks.length)];
-  
       const extraNumbers = [];
       for (let i = 0; i < 5; i++) {
         extraNumbers.push(Math.floor(Math.random() * 100));
       }
-  
+
       const extraNumbersString = extraNumbers.join(', ');
-      const formattedResponse = `From ${randomRank} ${username}: !yedel` + ` [${extraNumbersString}]`;
-  
+      const formattedResponse = selectedResponse.replace('{username}', username) + ` [${extraNumbersString}]`;
+
       this.send(`/w ${username} ${formattedResponse}`);
     } catch (error) {
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
@@ -58,4 +54,5 @@ class Yedel extends MinecraftCommand {
     }
   }
 }
+
 module.exports = Yedel;
