@@ -38,7 +38,7 @@ class MessageHandler {
       replyingTo: await this.fetchReply(message),
     });
 
-    message.react('✅');
+    message.react('<:awaburning:850273241926467594>');
   }
 
   isBlacklistedWord(message) {
