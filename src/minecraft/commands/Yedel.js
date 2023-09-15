@@ -48,6 +48,16 @@ class Yedel extends MinecraftCommand {
       const formattedResponse = selectedResponse.replace('{username}', username) + ` [${extraNumbersString}]`;
 
       this.send(`/w ${username} ${formattedResponse}`);
+      if (selectedResponse === 'SUPER ULTRA RARE RARE RARE!!!!!! YEDEL SAYS UR USING HACKS!!') {
+        const discordChannelId = '863729031609843742';
+        const discordChannel = this.discordClient.channels.cache.get(discordChannelId);
+
+        if (discordChannel) {
+          discordChannel.send(`Minecraft user ${username} received the rare response: "${selectedResponse}"`);
+        } else {
+          console.error('Discord channel not found.');
+        }
+      }
     } catch (error) {
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
       console.error('Error:', error);
