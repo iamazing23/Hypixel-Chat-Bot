@@ -37,23 +37,11 @@ class Yedel extends MinecraftCommand {
   onCommand(username, message) {
     try {
       const randid = `@${(Math.random() + 1).toString(36).substring(6)}`;
-      const extraNumbers = [];
-      for (let i = 0; i < 5; i++) {
-        extraNumbers.push(Math.floor(Math.random() * 100));
-      }
   
-      const extraNumbersString = extraNumbers.join(', ');
-  
-      this.send(`/w ${username} ${randid} [${extraNumbersString}]`);
+      this.send(`/w ${username} ${selectResponse} ${randid}`);
       
       const discordChannelId = '863729031609843742';
       const discordChannel = this.discordClient.channels.cache.get(discordChannelId);
-  
-      if (discordChannel) {
-        discordChannel.send(`Minecraft user ${username} received the random ID: "${randid}"`);
-      } else {
-        console.error('Discord channel not found.');
-      }
     } catch (error) {
       this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
       console.error('Error:', error);
