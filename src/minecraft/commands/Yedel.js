@@ -8,11 +8,11 @@ class Yedel extends MinecraftCommand {
     this.aliases = [];
     this.description = 'very cool command';
     this.responses = [
-      { text: 'SUPER ULTRA RARE RARE RARE!!!!!!{username} YEDEL SAYS UR USING HACKS!!', probability: 3 },
-      { text: 'ULTRA RARE!!! {username} owes yedel 1 coin!!!', probability: 5 },
-      { text: 'Rare! Yedel said {username} sucks!', probability: 10 },
-      { text: 'Uncommon! Hey {username}, Yedel thinks you suck!', probability: 15 },
-      { text: 'Common! Yedel is not a fan of {username}.', probability: 67 },
+      { text: 'SUPER ULTRA RARE RARE RARE!!!!!! YEDEL SAYS UR USING HACKS!!', probability: 3 },
+      { text: 'ULTRA RARE!!! You owes yedel 1 coin!!!', probability: 5 },
+      { text: 'Rare! Yedel said you suck!', probability: 10 },
+      { text: 'Uncommon! Hey you}, Yedel thinks you suck!', probability: 15 },
+      { text: 'Common! Yedel is not a fan of you.', probability: 67 },
     ];
   }
 
