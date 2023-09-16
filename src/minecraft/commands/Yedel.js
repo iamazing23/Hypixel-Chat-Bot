@@ -37,8 +37,8 @@ class Yedel extends MinecraftCommand {
   onCommand(username, message) {
     try {
       const randid = `@${(Math.random() + 1).toString(36).substring(6)}`;
-  
-      this.send(`/w ${username} ${selectResponse} ${randid}`);
+      const selectedResponse = this.selectRandomResponse();
+      this.send(`/w ${username} ${selectedResponse} ${randid}`);
       
       const discordChannelId = '863729031609843742';
       const discordChannel = this.discordClient.channels.cache.get(discordChannelId);
