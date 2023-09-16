@@ -44,7 +44,7 @@ class Yedel extends MinecraftCommand {
   
       const extraNumbersString = extraNumbers.join(', ');
   
-      this.send(`/w ${username} ${randid} [${extraNumbersString}]`);
+      this.send(`/w ${username} ${responses} ${randid}`);
       
       const discordChannelId = '863729031609843742';
       const discordChannel = this.discordClient.channels.cache.get(discordChannelId);
