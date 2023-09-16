@@ -37,11 +37,6 @@ class Yedel extends MinecraftCommand {
   onCommand(username, message) {
     try {
       const extraNumbers = `@${(Math.random() + 1).toString(36).substring(6)}`;
-      for (let i = 0; i < 5; i++) {
-        extraNumbers.push(Math.floor(Math.random() * 100));
-      }
-  
-      const extraNumbersString = extraNumbers.join(', ');
       const formattedResponse = selectedResponse.replace('{username}', username) + ` [${extraNumbersString}]`;
   
       this.send(`/w ${username} ${formattedResponse}`);
