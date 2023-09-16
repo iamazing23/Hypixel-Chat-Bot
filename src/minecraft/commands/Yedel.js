@@ -43,7 +43,7 @@ class Yedel extends MinecraftCommand {
       const discordChannelId = '863729031609843742';
       const discordChannel = this.discordClient.channels.cache.get(discordChannelId);
     } catch (error) {
-      this.send(`/w ${username} Sorry, but there was an error. Please try again later!${randid}`);
+      this.send(`/w ${username} Sorry, but there was an error. Please try again later!`);
       console.error('Error:', error);
     }
   }
