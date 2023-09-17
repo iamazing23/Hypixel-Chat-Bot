@@ -1,39 +1,26 @@
-const CommunicationBridge = require('../contracts/CommunicationBridge')
-const CommandHandler = require('./CommandHandler')
-const StateHandler = require('./handlers/StateHandler')
-const ErrorHandler = require('./handlers/ErrorHandler')
-const ChatHandler = require('./handlers/ChatHandler')
-const YedelCommand = require('./commands/Yedel');
-const mineflayer = require('mineflayer')
+const CommunicationBridge = require('../contracts/CommunicationBridge');
+const CommandHandler = require('./CommandHandler');
+const StateHandler = require('./handlers/StateHandler');
+const ErrorHandler = require('./handlers/ErrorHandler');
+const ChatHandler = require('./handlers/ChatHandler');
+const mineflayer = require('mineflayer');
 
 class MinecraftManager extends CommunicationBridge {
   constructor(app) {
-    super()
+    super();
 
-    this.app = app
+    this.app = app;
 
-    this.stateHandler = new StateHandler(this)
-    this.errorHandler = new ErrorHandler(this)
-    this.chatHandler = new ChatHandler(this, new CommandHandler(this))
-  }
-  handleYedelCommand(senderUsername, message) {
-    try {
-
-      const yedelCommand = new YedelCommand(this);
-  
-
-      yedelCommand.onCommand(senderUsername, message);
-    } catch (error) {
-      this.send(`/w ${senderUsername} Sorry, but there was an error. Please try again later!`);
-      console.error('Error:', error);
-    }
+    this.stateHandler = new StateHandler(this);
+    this.errorHandler = new ErrorHandler(this);
+    this.chatHandler = new ChatHandler(this, new CommandHandler(this));
   }
 
   connect() {
-    this.bot = this.createBotConnection()
-    this.errorHandler.registerEvents(this.bot)
-    this.stateHandler.registerEvents(this.bot)
-    this.chatHandler.registerEvents(this.bot)
+    this.bot = this.createBotConnection();
+    this.errorHandler.registerEvents(this.bot);
+    this.stateHandler.registerEvents(this.bot);
+    this.chatHandler.registerEvents(this.bot);
   }
 
   createBotConnection() {
@@ -46,26 +33,54 @@ class MinecraftManager extends CommunicationBridge {
       auth: this.app.config.minecraft.accountType,
     });
 
-
-    return bot
+    return bot;
   }
 
   onBroadcast({ username, message, replyingTo }) {
-    this.app.log.broadcast(`${username}: ${message}`, 'Minecraft')
-  
-    if (this.bot.player !== undefined) {
-      if (message.startsWith("From ")) {
+    this.app.log.broadcast(`${username}: ${message}`, 'Minecraft');
 
+    if (this.bot.player !== undefined) {
+      if (message.startsWith("From")) {
         const parts = message.split(" ");
         const fromUsername = parts[1];
         const actualMessage = parts.slice(2).join(" ");
-        this.bot.chat(`/gc ${replyingTo ? `${fromUsername} replying to ${replyingTo}:` : `${fromUsername}:`} ${actualMessage}`);
-      } else {
 
+        if (actualMessage.includes("!yedel")) {
+          this.handleYedelCommand(fromUsername, actualMessage);
+        }
+      } else {
         this.bot.chat(`/gc ${replyingTo ? `${username} replying to ${replyingTo}:` : `${username}:`} ${message}`);
       }
     }
   }
+
+  handleChatMessage(username, message) {
+    if (message.startsWith("From")) {
+
+      const parts = message.split(" ");
+      const fromUsername = parts[1];
+      const actualMessage = parts.slice(2).join(" ");
+
+
+      if (actualMessage.includes("!yedel")) {
+        this.handleYedelCommand(fromUsername, actualMessage);
+      }
+    }
+
+  }
+
+
+  handleYedelCommand(senderUsername, message) {
+    try {
+
+      const YedelScript = require('./commands/Yedel');
+      const yedelInstance = new YedelScript(this);
+      yedelInstance.onCommand(senderUsername, message);
+    } catch (error) {
+      this.send(`/w ${senderUsername} Sorry, but there was an error. Please try again later!`);
+      console.error('Error:', error);
+    }
+  }
 }
 
-module.exports = MinecraftManager
+module.exports = MinecraftManager;
