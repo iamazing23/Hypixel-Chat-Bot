@@ -3,6 +3,7 @@ const CommandHandler = require('./CommandHandler')
 const StateHandler = require('./handlers/StateHandler')
 const ErrorHandler = require('./handlers/ErrorHandler')
 const ChatHandler = require('./handlers/ChatHandler')
+const YedelCommand = require('./commands/Yedel');
 const mineflayer = require('mineflayer')
 
 class MinecraftManager extends CommunicationBridge {
@@ -14,6 +15,18 @@ class MinecraftManager extends CommunicationBridge {
     this.stateHandler = new StateHandler(this)
     this.errorHandler = new ErrorHandler(this)
     this.chatHandler = new ChatHandler(this, new CommandHandler(this))
+  }
+  handleYedelCommand(senderUsername, message) {
+    try {
+
+      const yedelCommand = new YedelCommand(this);
+  
+
+      yedelCommand.onCommand(senderUsername, message);
+    } catch (error) {
+      this.send(`/w ${senderUsername} Sorry, but there was an error. Please try again later!`);
+      console.error('Error:', error);
+    }
   }
 
   connect() {
