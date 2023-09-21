@@ -5,7 +5,7 @@ class KiwiCommand extends MinecraftCommand {
     super(minecraft);
 
     this.name = 'kiwi';
-    this.aliases = [k];
+    this.aliases = [];
     this.description = 'kiwis command';
     this.responses = [
       'Average kiwi moment ^^',
