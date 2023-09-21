@@ -17,6 +17,7 @@ class MessageHandler {
 
     const content = this.stripDiscordContent(message.content).trim();
     if (content.length == 0) {
+
       message.react('❌');
       return;
     }
@@ -29,19 +30,10 @@ class MessageHandler {
             color: 'FF0000',
           },
         });
+
         message.react('❌');
       });
       return;
-    }
-
-    const links = this.extractLinks(message.content);
-    if (links.length > 0) {
-      const linkText = links.join('\n');
-      this.discord.client.channels.fetch(this.discord.app.config.discord.channel).then(channel => {
-        channel.send({
-          content: `\n${linkText}`,
-        });
-      });
     }
 
     this.discord.broadcastMessage({
@@ -60,7 +52,7 @@ class MessageHandler {
         return true;
       }
     }
-    return false;
+    return false; 
   }
 
   async fetchReply(message) {
@@ -91,11 +83,6 @@ class MessageHandler {
 
   shouldBroadcastMessage(message) {
     return !message.author.bot && message.channel.id == this.discord.app.config.discord.channel && message.content && message.content.length > 0;
-  }
-
-  extractLinks(text) {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.match(urlRegex) || [];
   }
 }
 
