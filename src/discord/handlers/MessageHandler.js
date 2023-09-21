@@ -28,6 +28,9 @@ class MessageHandler {
             color: 'FF0000',
           },
         });
+
+        // React with the "❌" emoji
+        message.react('❌');
       });
       return;
     }
@@ -45,20 +48,21 @@ class MessageHandler {
     const blacklistedWords = this.discord.app.config.discord.blacklistedWords;
     for (var i = 0; i < blacklistedWords.length; i++) { 
       if (message.includes(blacklistedWords[i])) {
-        return true
-      };
-    };
+        return true;
+      }
+    }
+    return false; // Return false if no blacklisted word is found
   }
 
   async fetchReply(message) {
     try {
-      if (!message.reference) return null
+      if (!message.reference) return null;
 
-      const reference = await message.channel.messages.fetch(message.reference.messageID)
+      const reference = await message.channel.messages.fetch(message.reference.messageID);
 
-      return reference.member ? reference.member.displayName : reference.author.username
+      return reference.member ? reference.member.displayName : reference.author.username;
     } catch (e) {
-      return null
+      return null;
     }
   }
 
@@ -69,16 +73,16 @@ class MessageHandler {
       .replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, '\n')
       .split('\n')
       .map(part => {
-        part = part.trim()
+        part = part.trim();
 
-        return part.length == 0 ? '' : part + ' '
+        return part.length == 0 ? '' : part + ' ';
       })
-      .join('')
+      .join('');
   }
 
   shouldBroadcastMessage(message) {
-    return !message.author.bot && message.channel.id == this.discord.app.config.discord.channel && message.content && message.content.length > 0
+    return !message.author.bot && message.channel.id == this.discord.app.config.discord.channel && message.content && message.content.length > 0;
   }
 }
 
-module.exports = MessageHandler
+module.exports = MessageHandler;
