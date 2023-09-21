@@ -17,6 +17,8 @@ class MessageHandler {
 
     const content = this.stripDiscordContent(message.content).trim();
     if (content.length == 0) {
+
+      message.react('❌');
       return;
     }
 
@@ -29,7 +31,6 @@ class MessageHandler {
           },
         });
 
-        // React with the "❌" emoji
         message.react('❌');
       });
       return;
@@ -51,7 +52,7 @@ class MessageHandler {
         return true;
       }
     }
-    return false; // Return false if no blacklisted word is found
+    return false; 
   }
 
   async fetchReply(message) {
