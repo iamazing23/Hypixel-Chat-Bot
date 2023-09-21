@@ -62,6 +62,16 @@ class StateHandler extends EventHandler {
       if (this.isOnlineMessage(message)) {
         this.online = true;
       }
+      const linkRegex = /(https?:\/\/[^\s]+)/g;
+      const links = message.match(linkRegex);
+
+      if (links && links.length > 0) {
+
+        links.forEach((link) => {
+
+          this.bot.chat(link);
+        });
+      }
 
 
       if (this.isLeaveMessage(message)) {
