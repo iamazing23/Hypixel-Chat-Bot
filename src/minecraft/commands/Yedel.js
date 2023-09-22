@@ -36,7 +36,7 @@ class Yedel extends MinecraftCommand {
 
   onCommand(username, message) {
     try {
-      const randid = `@${(Math.random() + 1).toString(36).substring(6)}`;
+      const randid = `@${Math.random().toString(36).substring(6)}`;
       const selectedResponse = this.selectRandomResponse();
       this.send(`/w ${username} ${selectedResponse} ${randid}`);
     } catch (error) {
