@@ -1,6 +1,6 @@
 const DiscordCommand = require('../../contracts/DiscordCommand')
 
-class meow extends DiscordCommand {
+class meowCommand extends DiscordCommand {
   constructor(discord) {
     super(discord)
 
@@ -57,4 +57,4 @@ class meow extends DiscordCommand {
   }
 }
 
-module.exports = Meow
+module.exports = meowCommand
