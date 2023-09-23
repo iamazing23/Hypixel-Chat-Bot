@@ -31,11 +31,11 @@ class meowCommand extends DiscordCommand {
             value: discordCommands.join('\n')
           },
           {
-            name: '',
+            name: 'mao',
             value: minecraftCommands.join('\n')
           },
           {
-            name: `mao`,
+            name: `la`,
             value: [
               `la`,
               `la`,
