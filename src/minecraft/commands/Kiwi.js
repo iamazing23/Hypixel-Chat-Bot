@@ -9,9 +9,7 @@ class KiwiCommand extends MinecraftCommand {
     this.description = 'kiwis command';
     this.responses = [
       'Average kiwi moment ^^',
-      'Average kiwi moment ^^^^',
-      'Average kiwi moment ^',
-      'Average kiwi moment ^^^^^',
+      'meow :3',
     ];
   }
 
