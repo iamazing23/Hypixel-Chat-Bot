@@ -10,6 +10,11 @@ class meowCommand extends DiscordCommand {
   }
 
   onCommand(message) {
+    let discordCommands = []
+    let minecraftCommands = []
+
+    this.discord.messageHandler.command.commands.forEach
+
     message.channel.send({
       embed: {
         title: 'Meo',
