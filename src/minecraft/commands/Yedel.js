@@ -1,4 +1,4 @@
-const MinecraftCommand = require('./path/to/MinecraftCommand');
+const MinecraftCommand = require('../../contracts/MinecraftCommand');
 
 class Yedel extends MinecraftCommand {
   constructor(minecraft) {
