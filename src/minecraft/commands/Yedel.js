@@ -1,3 +1,5 @@
+const MinecraftCommand = require('./path/to/MinecraftCommand');
+
 class Yedel extends MinecraftCommand {
   constructor(minecraft) {
     super(minecraft);
