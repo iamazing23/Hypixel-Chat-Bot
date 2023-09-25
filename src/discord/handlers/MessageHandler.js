@@ -34,16 +34,6 @@ class MessageHandler {
       return;
     }
 
-    const links = this.extractLinks(message.content);
-    if (links.length > 0) {
-      const linkText = links.join('\n');
-      this.discord.client.channels.fetch(this.discord.app.config.discord.channel).then(channel => {
-        channel.send({
-          content: `Here are the links:\n${linkText}`,
-        });
-      });
-    }
-
     this.discord.broadcastMessage({
       username: message.member.displayName,
       message: this.stripDiscordContent(message.content),
