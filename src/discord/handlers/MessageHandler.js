@@ -49,7 +49,7 @@ class MessageHandler {
       message: this.stripDiscordContent(message.content),
       replyingTo: await this.fetchReply(message),
     });
-
+    
     message.react('✅');
   }
 
