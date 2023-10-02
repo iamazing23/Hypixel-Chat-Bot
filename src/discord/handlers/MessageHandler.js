@@ -6,36 +6,44 @@ class MessageHandler {
 
   async onMessage(message) {
     if (!this.shouldBroadcastMessage(message)) {
-      return;
+      return
     }
-  
+
     if (this.command.handle(message)) {
-      return;
+      return
     }
-  
-    const content = this.stripDiscordContent(message.content).trim();
+
+    const content = this.stripDiscordContent(message.content).trim()
     if (content.length == 0) {
-      return;
+      return
     }
-  
+
     if (this.isBlacklistedWord(message.content)) {
       this.discord.client.channels.fetch(this.discord.app.config.discord.channel).then(channel => {
         channel.send({
           embed: {
             author: { name: `Do not send that profanity!` },
-            color: 'FF0000',
-          },
-        });
-      });
-      return;
+            color: 'FF0000'
+          }
+        })
+      })
+      return
     }
-    message.react('✅');
-  
+
     this.discord.broadcastMessage({
       username: message.member.displayName,
       message: this.stripDiscordContent(message.content),
       replyingTo: await this.fetchReply(message),
-    });
+    })
+  }
+
+  isBlacklistedWord(message) {
+    const blacklistedWords = this.discord.app.config.discord.blacklistedWords;
+    for (var i = 0; i < blacklistedWords.length; i++) { 
+      if (message.includes(blacklistedWords[i])) {
+        return true
+      };
+    };
   }
 
   async fetchReply(message) {
