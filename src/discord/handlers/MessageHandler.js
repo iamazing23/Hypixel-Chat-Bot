@@ -71,17 +71,20 @@ class MessageHandler {
   }
 
   stripDiscordContent(message) {
+    
+    message = message.replace(/\bez\b/gi, 'e.z');
+  
     return message
       .replace(/<[@|#|!|&]{1,2}(\d+){16,}>/g, '\n')
       .replace(/<:\w+:(\d+){16,}>/g, '\n')
       .replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, '\n')
       .split('\n')
       .map(part => {
-        part = part.trim()
-
-        return part.length == 0 ? '' : part + ' '
+        part = part.trim();
+  
+        return part.length == 0 ? '' : part + ' ';
       })
-      .join('')
+      .join('');
   }
 
   shouldBroadcastMessage(message) {
