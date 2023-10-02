@@ -5,10 +5,10 @@ class MessageHandler {
   }
 
   async onMessage(message) {
-    // Check if the message is not from a bot and is in the desired channel
-    if (!message.author.bot && message.channel.id === 'YOUR_CHANNEL_ID_HERE') {
+
+    if (!message.author.bot && message.channel.id === '863729031609843742') {
       if (!this.shouldBroadcastMessage(message)) {
-        // React with '❌' when the message doesn't meet the conditions
+
         message.react('❌');
         return;
       }
@@ -19,7 +19,7 @@ class MessageHandler {
   
       const content = this.stripDiscordContent(message.content).trim();
       if (content.length == 0) {
-        // React with '❌' when the message is empty
+
         message.react('❌');
         return;
       }
@@ -33,13 +33,13 @@ class MessageHandler {
             },
           });
         });
-        // React with '❌' when the message contains a blacklisted word
+
         message.react('❌');
         return;
       }
   
-      // React to the message with a thumbs-up emoji (you can change this to any emoji you like)
-      message.react('👍');
+
+      message.react('✅');
   
       this.discord.broadcastMessage({
         username: message.member.displayName,
