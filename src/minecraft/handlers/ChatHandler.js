@@ -18,8 +18,11 @@ class StateHandler extends EventHandler {
 
 
   onMessage(event) {
-    const message = event.toString().trim()
+    const message = event.toString().trim();
     
+    // Detect links in the message using a regular expression
+    const linkRegex = /(https?:\/\/[^\s]+)/g;
+    const links = message.match(linkRegex);
     if (this.online===false) {
 
 
@@ -173,6 +176,14 @@ class StateHandler extends EventHandler {
         let user = message.replace(/\[(.*?)\]/g, '').trim().split(/ +/g)[3]
 
         return this.minecraft.broadcastCleanEmbed({ message: `${user} has been unmuted!`, color: '47F049' })
+      }
+
+      if (links && links.length > 0) {
+        links.forEach((link) => {
+          this.discord.client.channels.fetch('863729031609843742').then(channel => {
+            channel.send(link);
+          });
+        });
       }
 
       if (this.isSetrankFail(message)) {
