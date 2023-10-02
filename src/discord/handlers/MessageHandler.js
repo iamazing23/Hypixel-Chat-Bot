@@ -5,48 +5,48 @@ class MessageHandler {
   }
 
   async onMessage(message) {
-    if (message.author.bot) {
-      return;
-    }
-    if (!this.shouldBroadcastMessage(message)) {
-
-      message.react('❌');
-      return;
-    }
+    // Check if the message is not from a bot and is in the desired channel
+    if (!message.author.bot && message.channel.id === 'YOUR_CHANNEL_ID_HERE') {
+      if (!this.shouldBroadcastMessage(message)) {
+        // React with '❌' when the message doesn't meet the conditions
+        message.react('❌');
+        return;
+      }
   
-    if (this.command.handle(message)) {
-      return;
-    }
+      if (this.command.handle(message)) {
+        return;
+      }
   
-    const content = this.stripDiscordContent(message.content).trim();
-    if (content.length == 0) {
-
-      message.react('❌');
-      return;
-    }
+      const content = this.stripDiscordContent(message.content).trim();
+      if (content.length == 0) {
+        // React with '❌' when the message is empty
+        message.react('❌');
+        return;
+      }
   
-    if (this.isBlacklistedWord(message.content)) {
-      this.discord.client.channels.fetch(this.discord.app.config.discord.channel).then(channel => {
-        channel.send({
-          embed: {
-            author: { name: `Do not send that profanity!` },
-            color: 'FF0000',
-          },
+      if (this.isBlacklistedWord(message.content)) {
+        this.discord.client.channels.fetch(this.discord.app.config.discord.channel).then(channel => {
+          channel.send({
+            embed: {
+              author: { name: `Do not send that profanity!` },
+              color: 'FF0000',
+            },
+          });
         });
+        // React with '❌' when the message contains a blacklisted word
+        message.react('❌');
+        return;
+      }
+  
+      // React to the message with a thumbs-up emoji (you can change this to any emoji you like)
+      message.react('👍');
+  
+      this.discord.broadcastMessage({
+        username: message.member.displayName,
+        message: this.stripDiscordContent(message.content),
+        replyingTo: await this.fetchReply(message),
       });
-
-      message.react('❌');
-      return;
     }
-  
-
-    message.react('✅');
-  
-    this.discord.broadcastMessage({
-      username: message.member.displayName,
-      message: this.stripDiscordContent(message.content),
-      replyingTo: await this.fetchReply(message),
-    });
   }
 
   isBlacklistedWord(message) {
