@@ -5,6 +5,9 @@ class MessageHandler {
   }
 
   async onMessage(message) {
+    if (message.author.bot) {
+      return;
+    }
     if (!this.shouldBroadcastMessage(message)) {
 
       message.react('❌');
