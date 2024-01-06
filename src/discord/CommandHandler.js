@@ -34,7 +34,7 @@ class CommandHandler {
       command.onCommand(message)
       return true
     }
-    if (command.name === 'gtop' ||  command.name === 'g') {
+    if (command.name === 'gtop' ||  command.name === 'gm') {
       command.onCommand(message)
       return true
     }
