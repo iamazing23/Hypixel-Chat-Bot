@@ -30,14 +30,11 @@ class CommandHandler {
       return false
     }
 
-    if (command.name === 'online' || command.name === 'help' || command.name === 'list') {
+    if (command.name === 'online' || command.name === 'help' || command.name === 'list' || command.name === 'gtop' ||  command.name === 'gm') {
       command.onCommand(message)
       return true
     }
-    if (command.name === 'gtop' ||  command.name === 'gm') {
-      command.onCommand(message)
-      return true
-    }
+    
 
     if ((command.name != 'help' && !this.isCommander(message.member)) || (command.name == 'override' && !this.isOwner(message.author))) {
       return message.channel.send({
