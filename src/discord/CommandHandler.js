@@ -34,6 +34,10 @@ class CommandHandler {
       command.onCommand(message)
       return true
     }
+    if (command.name === 'gtop' ||  command.name === 'g') {
+      command.onCommand(message)
+      return true
+    }
 
     if ((command.name != 'help' && !this.isCommander(message.member)) || (command.name == 'override' && !this.isOwner(message.author))) {
       return message.channel.send({

@@ -5,7 +5,7 @@ class GmemberCommand extends DiscordCommand {
     super(discord)
 
     this.name = 'member'
-    this.aliases = ['g']
+    this.aliases = ['gm']
     this.description = 'shows the recent member things'
   }
 
