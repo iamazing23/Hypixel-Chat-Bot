@@ -14,4 +14,4 @@ class GuildTopCommand extends DiscordCommand {
     }
   }
 
-module.exports = GuildTCommand
+module.exports = GuildTopCommand
