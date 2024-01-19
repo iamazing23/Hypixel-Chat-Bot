@@ -17,40 +17,39 @@ class CommandHandler {
 
   handle(message) {
     if (!message.content.startsWith(this.prefix)) {
-      return false
+      return false;
     }
 
-    let args = message.content.slice(this.prefix.length).trim().split(/ +/)
-    let commandName = args.shift().toLowerCase()
+    const args = message.content.slice(this.prefix.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
 
-    let command = this.commands.get(commandName)
-      || this.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
+    const command = this.commands.get(commandName) || this.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
     if (!command) {
-      return false
+      return false;
     }
 
-    if (command.name === 'online' || command.name === 'help' || command.name === 'list' || command.name === 'gtop' ||  command.name === 'gm') {
-      command.onCommand(message)
-      return true
+    if (['online', 'help', 'list', 'gtop', 'gm'].includes(command.name)) {
+      command.onCommand(message);
+      return true;
     }
-    
 
-    if ((command.name != 'help' && !this.isCommander(message.member)) || (command.name == 'override' && !this.isOwner(message.author))) {
+    const isCommander = this.isCommander(message.member);
+    const isOwner = this.isOwner(message.author);
+
+    if ((command.name !== 'help' && !isCommander) || (command.name === 'override' && !isOwner)) {
       return message.channel.send({
         embed: {
           description: `You don't have permission to do that.`,
-          color: 'DC143C'
-        }
-      })
+          color: 'FF6347', // Change the color to a more appropriate one for a warning or lack of permission
+        },
+      });
     }
 
-    
+    this.discord.app.log.discord(`[${command.name}] ${message.content}`);
+    command.onCommand(message);
 
-    this.discord.app.log.discord(`[${command.name}] ${message.content}`)
-    command.onCommand(message)
-
-    return true
+    return true;
   }
 
   isCommander(member) {
