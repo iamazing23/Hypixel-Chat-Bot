@@ -234,9 +234,15 @@ class StateHandler extends EventHandler {
         return this.minecraft.broadcastCleanEmbed({ message: `${user} has requested to join the guild.`, color: '47F049' })
       }
 
+      if (this.isForgeModLoader(message)) {
+        this.bot.chat('/gc forge mod loader')
+      }
+
       if (!this.isGuildMessage(message)) {
         return
       }
+
+      
 
       let parts = message.split(':')
       let group = parts.shift().trim()
@@ -418,6 +424,8 @@ class StateHandler extends EventHandler {
   isJoinRequest(message) {
     return message.includes(`Click here to accept or type /guild accept `)
   }
+  isForgeModLoader(message) {
+    return message.includes('fml')
 }
 
 module.exports = StateHandler
